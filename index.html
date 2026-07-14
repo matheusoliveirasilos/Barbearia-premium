@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Crown Barber Club — Barbearia Premium</title>
+  <meta name="description" content="Black Crown Barber Club: barbearia premium especializada em cortes clássicos e modernos, barba na navalha e experiência de alto padrão. Agende seu horário." />
+  <meta name="keywords" content="barbearia premium, barbearia de luxo, corte masculino, barba, barbeiro, agendamento, Black Crown Barber Club" />
+  <meta name="author" content="Black Crown Barber Club" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#121212" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Black Crown Barber Club — Barbearia Premium" />
+  <meta property="og:description" content="Tradição, precisão e estilo. A barbearia premium que eleva o cuidado masculino a outro nível." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fallback caso o JavaScript esteja desabilitado: esconde o loading na hora -->
+  <noscript>
+    <style>#loading-screen { display: none !important; }</style>
+  </noscript>
+
+  <!-- Preload da imagem do Hero: prioriza o recurso mais importante da primeira dobra -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=65" fetchpriority="high" />
+</head>
+<body>
+
+  <!-- ===================== LOADING SCREEN ===================== -->
+  <div id="loading-screen" role="status" aria-live="polite" aria-label="Carregando site">
+    <div class="loader-box">
+      <svg class="loader-crown" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <path d="M10 40 L10 20 L21 30 L32 14 L43 30 L54 20 L54 40 Z" stroke="#C9A227" stroke-width="2" stroke-linejoin="round" fill="none"/>
+        <rect x="10" y="43" width="44" height="4" fill="#C9A227"/>
+      </svg>
+      <p class="loader-label">BLACK CROWN</p>
+      <div class="loader-track"><span class="loader-fill"></span></div>
+    </div>
+  </div>
+
+  <!-- ===================== SKIP LINK (Acessibilidade) ===================== -->
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="#hero" class="nav-logo" aria-label="Black Crown Barber Club — início">
+        <svg viewBox="0 0 64 64" class="nav-logo-icon" aria-hidden="true">
+          <path d="M10 40 L10 20 L21 30 L32 14 L43 30 L54 20 L54 40 Z" stroke="#C9A227" stroke-width="3" stroke-linejoin="round" fill="none"/>
+          <rect x="10" y="43" width="44" height="4" fill="#C9A227"/>
+        </svg>
+        <span>BLACK CROWN</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#agendamento">Agendamento</a>
+        <a href="#localizacao">Localização</a>
+      </nav>
+
+      <a href="#agendamento" class="btn btn-gold nav-cta">Agendar Horário</a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero" aria-label="Apresentação">
+      <div class="hero-bg" id="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=65');"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content reveal-fade">
+        <span class="eyebrow">Barbearia Premium · Desde 2012</span>
+        <h1 class="hero-title">BLACK <span>CROWN</span><br />BARBER CLUB</h1>
+        <div class="stripe-divider" aria-hidden="true"></div>
+        <p class="hero-slogan">Precisão de navalha. Estilo que carrega uma coroa.</p>
+        <div class="hero-actions">
+          <a href="#agendamento" class="btn btn-gold">Agendar Horário</a>
+          <a href="#servicos" class="btn btn-outline">Ver Serviços</a>
+        </div>
+      </div>
+
+      <a href="#sobre" class="scroll-cue" aria-label="Rolar para a próxima seção">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ===================== SOBRE ===================== -->
+    <section class="about" id="sobre" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-image reveal-left">
+          <img src="https://images.unsplash.com/photo-1672257493395-c6cb634397e2?auto=format&fit=crop&w=1000&q=72" alt="Interior sofisticado da barbearia Black Crown, com cadeiras de couro e iluminação em tons dourados" loading="lazy" width="1000" height="1250" />
+          <div class="about-badge">
+            <strong>12+</strong>
+            <span>Anos de Tradição</span>
+          </div>
+        </div>
+
+        <div class="about-text reveal-right">
+          <span class="eyebrow">Nossa História</span>
+          <h2 id="about-title" class="section-title">Uma coroa que se conquista no detalhe</h2>
+          <p>
+            Fundada em 2012 pelo mestre barbeiro Marcus Duarte, a Black Crown nasceu de uma convicção simples:
+            todo homem merece se sentir como realeza ao sentar em nossa cadeira. O que começou como uma pequena
+            barbearia de bairro se tornou referência em cuidado masculino de alto padrão, unindo técnicas
+            clássicas de navalha a tendências contemporâneas de styling.
+          </p>
+          <p>
+            Cada corte é tratado como um ritual — da toalha quente ao acabamento final, nada é apressado.
+            Selecionamos produtos importados, treinamos nossa equipe continuamente e cuidamos de cada detalhe
+            do ambiente para que sua visita seja, acima de tudo, uma experiência.
+          </p>
+
+          <div class="about-values">
+            <div class="value-item">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 L23 17 L34 17 L25 24 L28 35 L20 28 L12 35 L15 24 L6 17 L17 17 Z" stroke="#C9A227" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+              <div>
+                <h3>Missão</h3>
+                <p>Elevar o cuidado masculino com técnica, respeito e excelência em cada atendimento.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" stroke="#C9A227" stroke-width="2" fill="none"/><path d="M20 12v8l6 4" stroke="#C9A227" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+              <div>
+                <h3>Valores</h3>
+                <p>Pontualidade, precisão técnica e hospitalidade genuína guiam tudo o que fazemos.</p>
+              </div>
+            </div>
+            <div class="value-item">
+              <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30 L20 8 L32 30 Z" stroke="#C9A227" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M20 18v7" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/></svg>
+              <div>
+                <h3>Diferenciais</h3>
+                <p>Barbeiros certificados, produtos importados e ambiente exclusivo com atendimento agendado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SERVIÇOS ===================== -->
+    <section class="services" id="servicos" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-heading reveal-fade">
+          <span class="eyebrow">O Que Oferecemos</span>
+          <h2 id="services-title" class="section-title">Nossos Serviços</h2>
+          <p class="section-subtitle">Cada serviço é executado com precisão técnica e atenção total ao detalhe.</p>
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card reveal-fade">
+            <span class="service-index">01</span>
+            <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 12 L28 32 M28 12 L8 32" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="10" r="3" stroke="#C9A227" stroke-width="2" fill="none"/><circle cx="12" cy="30" r="3" stroke="#C9A227" stroke-width="2" fill="none"/></svg>
+            <h3>Corte Masculino</h3>
+            <p>Corte personalizado conforme o formato do rosto e estilo, com acabamento na navalha.</p>
+            <span class="service-price">R$ 60</span>
+          </article>
+
+          <article class="service-card reveal-fade">
+            <span class="service-index">02</span>
+            <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M12 10 C10 20 10 28 16 32 C22 28 24 22 24 16 C24 10 28 8 30 10" stroke="#C9A227" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            <h3>Barba</h3>
+            <p>Modelagem completa com toalha quente, óleos e navalha para um acabamento impecável.</p>
+            <span class="service-price">R$ 45</span>
+          </article>
+
+          <article class="service-card service-card-featured reveal-fade">
+            <span class="service-index">03</span>
+            <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 12 L20 24 L32 12" stroke="#C9A227" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 22 C12 26 12 30 16 32" stroke="#C9A227" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            <h3>Corte + Barba</h3>
+            <p>Nosso combo mais requisitado: corte completo e barba modelada em um único atendimento.</p>
+            <span class="service-price">R$ 95</span>
+          </article>
+
+          <article class="service-card reveal-fade">
+            <span class="service-index">04</span>
+            <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 22 C14 12 26 12 32 22" stroke="#C9A227" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            <h3>Sobrancelha</h3>
+            <p>Design e alinhamento de sobrancelha para valorizar a expressão do olhar.</p>
+            <span class="service-price">R$ 25</span>
+          </article>
+
+          <article class="service-card reveal-fade">
+            <span class="service-index">05</span>
+            <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="14" y="8" width="12" height="24" rx="2" stroke="#C9A227" stroke-width="2" fill="none"/><path d="M14 16h12" stroke="#C9A227" stroke-width="2"/></svg>
+            <h3>Pigmentação</h3>
+            <p>Técnica de camuflagem capilar para disfarçar falhas e uniformizar a barba ou o cabelo.</p>
+            <span class="service-price">R$ 70</span>
+          </article>
+
+          <article class="service-card reveal-fade">
+            <span class="service-index">06</span>
+            <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 C26 14 30 20 30 25 C30 31 25.5 35 20 35 C14.5 35 10 31 10 25 C10 20 14 14 20 6 Z" stroke="#C9A227" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+            <h3>Hidratação Capilar</h3>
+            <p>Tratamento nutritivo profundo que devolve maciez, brilho e saúde aos fios.</p>
+            <span class="service-price">R$ 55</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ESTATÍSTICAS ===================== -->
+    <section class="stats" id="estatisticas" aria-label="Estatísticas da barbearia">
+      <div class="container stats-grid">
+        <div class="stat-box reveal-fade">
+          <span class="stat-number" data-target="18500" data-suffix="+">0</span>
+          <span class="stat-label">Clientes Atendidos</span>
+        </div>
+        <div class="stat-box reveal-fade">
+          <span class="stat-number" data-target="12">0</span>
+          <span class="stat-label">Anos de Experiência</span>
+        </div>
+        <div class="stat-box reveal-fade">
+          <span class="stat-number" data-target="42000" data-suffix="+">0</span>
+          <span class="stat-label">Cortes Realizados</span>
+        </div>
+        <div class="stat-box reveal-fade">
+          <span class="stat-number" data-target="4.9" data-decimal="true">0</span>
+          <span class="stat-label">Avaliação Média</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EQUIPE ===================== -->
+    <section class="team" id="equipe" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-heading reveal-fade">
+          <span class="eyebrow">Mestres do Ofício</span>
+          <h2 id="team-title" class="section-title">Nossa Equipe</h2>
+          <p class="section-subtitle">Barbeiros certificados, cada um com sua assinatura e especialidade.</p>
+        </div>
+
+        <div class="team-grid">
+          <article class="team-card reveal-fade">
+            <div class="team-photo avatar-1">
+              <svg class="avatar-icon" viewBox="0 0 100 100" role="img" aria-label="Avatar genérico de perfil">
+                <circle cx="50" cy="38" r="18" />
+                <path d="M50 60c-24 0-40 14-40 32v8h80v-8c0-18-16-32-40-32z" />
+              </svg>
+            </div>
+            <h3>Rafael Almeida</h3>
+            <span class="team-role">Cortes Clássicos</span>
+            <p>15 anos de experiência em cortes tradicionais e navalha. Referência em tesoura.</p>
+          </article>
+
+          <article class="team-card reveal-fade">
+            <div class="team-photo avatar-2">
+              <svg class="avatar-icon" viewBox="0 0 100 100" role="img" aria-label="Avatar genérico de perfil">
+                <circle cx="50" cy="38" r="18" />
+                <path d="M50 60c-24 0-40 14-40 32v8h80v-8c0-18-16-32-40-32z" />
+              </svg>
+            </div>
+            <h3>Diego Ferreira</h3>
+            <span class="team-role">Mestre da Navalha</span>
+            <p>Especialista em barboterapia e modelagem de barba com toalha quente.</p>
+          </article>
+
+          <article class="team-card reveal-fade">
+            <div class="team-photo avatar-3">
+              <svg class="avatar-icon" viewBox="0 0 100 100" role="img" aria-label="Avatar genérico de perfil">
+                <circle cx="50" cy="38" r="18" />
+                <path d="M50 60c-24 0-40 14-40 32v8h80v-8c0-18-16-32-40-32z" />
+              </svg>
+            </div>
+            <h3>Bruno Castro</h3>
+            <span class="team-role">Fade &amp; Design</span>
+            <p>Especialista em degradês precisos e desenhos personalizados no cabelo.</p>
+          </article>
+
+          <article class="team-card reveal-fade">
+            <div class="team-photo avatar-4">
+              <svg class="avatar-icon" viewBox="0 0 100 100" role="img" aria-label="Avatar genérico de perfil">
+                <circle cx="50" cy="38" r="18" />
+                <path d="M50 60c-24 0-40 14-40 32v8h80v-8c0-18-16-32-40-32z" />
+              </svg>
+            </div>
+            <h3>Thiago Nunes</h3>
+            <span class="team-role">Colorimetria</span>
+            <p>Referência em pigmentação capilar e técnicas de camuflagem de falhas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALERIA ===================== -->
+    <section class="gallery" id="galeria" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-heading reveal-fade">
+          <span class="eyebrow">Nosso Universo</span>
+          <h2 id="gallery-title" class="section-title">Galeria</h2>
+          <p class="section-subtitle">Clique em uma imagem para ampliar.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="gallery-item reveal-fade" data-caption="Corte moderno com degradê">
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=700&q=72" alt="Corte moderno com degradê" loading="lazy" width="700" height="700" />
+          </button>
+          <button class="gallery-item gallery-item-tall reveal-fade" data-caption="Ambiente interno da barbearia">
+            <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=700&q=75" alt="Ambiente interno da barbearia Black Crown" loading="lazy" width="700" height="900" />
+          </button>
+          <button class="gallery-item reveal-fade" data-caption="Produtos premium para barba">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=700&q=72" alt="Produtos premium para barba" loading="lazy" width="700" height="700" />
+          </button>
+          <button class="gallery-item reveal-fade" data-caption="Barba modelada na navalha">
+            <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=700&q=72" alt="Barba modelada na navalha" loading="lazy" width="700" height="700" />
+          </button>
+          <button class="gallery-item gallery-item-wide reveal-fade" data-caption="Atendimento personalizado">
+            <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1000&q=72" alt="Atendimento personalizado ao cliente" loading="lazy" width="1000" height="700" />
+          </button>
+          <button class="gallery-item reveal-fade" data-caption="Detalhe de corte clássico">
+            <img src="https://images.unsplash.com/photo-1621607512022-6aecc4fed814?auto=format&fit=crop&w=700&q=72" alt="Detalhe de corte clássico" loading="lazy" width="700" height="700" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LIGHTBOX (modal de imagem) ===================== -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de imagem ampliada" hidden>
+      <button class="lightbox-close" id="lightbox-close" aria-label="Fechar imagem ampliada">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <figure class="lightbox-figure">
+        <img id="lightbox-img" src="" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+    </div>
+
+    <!-- ===================== DEPOIMENTOS ===================== -->
+    <section class="testimonials" id="depoimentos" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-heading reveal-fade">
+          <span class="eyebrow">Vozes do Clube</span>
+          <h2 id="testimonials-title" class="section-title">Depoimentos</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card reveal-fade">
+            <div class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</div>
+            <p>Ambiente impecável e atendimento de outro nível. O Rafael entende exatamente o que eu quero antes mesmo de eu explicar.</p>
+            <footer><strong>Eduardo Lima</strong><span>Cliente desde 2019</span></footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card reveal-fade">
+            <div class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</div>
+            <p>A barboterapia com o Diego é um ritual. Saio de lá renovado, literalmente parece outra pessoa.</p>
+            <footer><strong>Felipe Rocha</strong><span>Cliente desde 2021</span></footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card reveal-fade">
+            <div class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</div>
+            <p>Melhor barbearia que já frequentei. Pontualidade, produtos de qualidade e um ambiente que parece um clube exclusivo.</p>
+            <footer><strong>Gustavo Prado</strong><span>Cliente desde 2018</span></footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card reveal-fade">
+            <div class="stars" aria-label="Avaliação 5 de 5 estrelas">★★★★★</div>
+            <p>O fade do Bruno é surreal, sempre milimetricamente perfeito. Recomendo de olhos fechados.</p>
+            <footer><strong>Henrique Souza</strong><span>Cliente desde 2022</span></footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AGENDAMENTO ===================== -->
+    <section class="booking" id="agendamento" aria-labelledby="booking-title">
+      <div class="container booking-grid">
+        <div class="booking-text reveal-left">
+          <span class="eyebrow">Reserve Seu Horário</span>
+          <h2 id="booking-title" class="section-title">Agendamento</h2>
+          <p>
+            Garanta seu horário com o barbeiro de sua preferência. Recomendamos agendar com pelo menos
+            24 horas de antecedência para os finais de semana.
+          </p>
+          <ul class="booking-list">
+            <li>Confirmação enviada por WhatsApp</li>
+            <li>Cancelamento gratuito até 2h antes</li>
+            <li>Atendimento pontual, sem espera</li>
+          </ul>
+        </div>
+
+        <form class="booking-form" id="booking-form" novalidate>
+          <div class="form-row">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" name="name" placeholder="Seu nome" required autocomplete="name" />
+          </div>
+
+          <div class="form-row">
+            <label for="phone">Telefone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(11) 91234-5678" required autocomplete="tel" />
+          </div>
+
+          <div class="form-row-split">
+            <div class="form-row">
+              <label for="service">Serviço</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Selecione</option>
+                <option>Corte Masculino</option>
+                <option>Barba</option>
+                <option>Corte + Barba</option>
+                <option>Sobrancelha</option>
+                <option>Pigmentação</option>
+                <option>Hidratação Capilar</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="barber">Barbeiro</label>
+              <select id="barber" name="barber" required>
+                <option value="" disabled selected>Selecione</option>
+                <option>Rafael Almeida</option>
+                <option>Diego Ferreira</option>
+                <option>Bruno Castro</option>
+                <option>Thiago Nunes</option>
+                <option>Sem preferência</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-split">
+            <div class="form-row">
+              <label for="date">Data</label>
+              <input type="date" id="date" name="date" required />
+            </div>
+            <div class="form-row">
+              <label for="time">Horário</label>
+              <select id="time" name="time" required>
+                <option value="" disabled selected>Selecione</option>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>13:00</option>
+                <option>14:00</option>
+                <option>15:00</option>
+                <option>16:00</option>
+                <option>17:00</option>
+                <option>18:00</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold form-submit">Agendar</button>
+          <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================== HORÁRIO + LOCALIZAÇÃO ===================== -->
+    <section class="info-section" id="informacoes" aria-label="Horário de funcionamento e localização">
+      <div class="container info-grid">
+
+        <div class="hours-card reveal-left" id="horario">
+          <span class="eyebrow">Estamos Abertos</span>
+          <h2 class="section-title">Horário de Funcionamento</h2>
+          <ul class="hours-list">
+            <li><span>Segunda-feira</span><span>Fechado</span></li>
+            <li><span>Terça a Sexta</span><span>09h00 — 20h00</span></li>
+            <li><span>Sábado</span><span>08h00 — 18h00</span></li>
+            <li><span>Domingo</span><span>Fechado</span></li>
+          </ul>
+        </div>
+
+        <div class="location-card reveal-right" id="localizacao">
+          <span class="eyebrow">Venha Nos Conhecer</span>
+          <h2 class="section-title">Localização</h2>
+          <p><strong>Endereço:</strong> Rua Coroa Dourada, 245 — Jardim Elegância, São Paulo — SP</p>
+          <p><strong>Telefone:</strong> (11) 3456-7890</p>
+          <div class="location-map">
+            <iframe
+              title="Mapa de localização da Black Crown Barber Club"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-46.660%2C-23.575%2C-46.640%2C-23.560&layer=mapnik"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-logo">BLACK <span>CROWN</span></p>
+        <p>Barbearia premium. Precisão, tradição e estilo em cada corte.</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram da Black Crown">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" fill="none"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook da Black Crown">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h-2a4 4 0 0 0-4 4v3H7v3h2v6h3v-6h2.5l.5-3H12V8a1 1 0 0 1 1-1h2Z" stroke="currentColor" fill="none"/></svg>
+          </a>
+          <a href="https://wa.me/5511987654321" aria-label="Fale conosco pelo WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-3.6-6.7M13 8.5c.3 1.6 1.6 2.9 3.2 3.2" stroke="currentColor" fill="none" stroke-linecap="round"/><path d="M8.5 9.5c.4 2.6 2.4 4.6 5 5" stroke="currentColor" fill="none" stroke-linecap="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <p>Telefone: (11) 3456-7890</p>
+        <p>WhatsApp: (11) 98765-4321</p>
+        <p>E-mail: contato@blackcrownbarber.com.br</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#servicos">Serviços</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#agendamento">Agendamento</a>
+        <a href="#localizacao">Localização</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Black Crown Barber Club. Todos os direitos reservados.</p>
+      <p class="footer-disclaimer">Projeto fictício desenvolvido para portfólio.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== BOTÃO VOLTAR AO TOPO ===================== -->
+  <button id="back-to-top" aria-label="Voltar ao topo da página">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
