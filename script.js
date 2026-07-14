@@ -157,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("open-catalog"),
     document.getElementById("open-catalog-nav"),
     document.getElementById("open-catalog-footer"),
+    document.getElementById("open-catalog-bottom"),
   ].filter(Boolean);
 
   let lastFocusedBeforeCatalog = null;
