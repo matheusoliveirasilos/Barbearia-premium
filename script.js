@@ -51,11 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------------------------------------------------------
-     2. NAVBAR — efeito ao rolar + menu hambúrguer mobile
+     2. NAVBAR — efeito ao rolar
   --------------------------------------------------------- */
   const navbar = document.getElementById("navbar");
-  const navToggle = document.getElementById("nav-toggle");
-  const navLinks = document.getElementById("nav-links");
 
   const handleNavbarScroll = () => {
     navbar.classList.toggle("scrolled", window.scrollY > 60);
@@ -63,23 +61,198 @@ document.addEventListener("DOMContentLoaded", () => {
   handleNavbarScroll();
   window.addEventListener("scroll", handleNavbarScroll, { passive: true });
 
-  const closeMobileMenu = () => {
-    navbar.classList.remove("menu-open");
+  /* ---------------------------------------------------------
+     2.1 DRAWER MOBILE PREMIUM
+     Menu hambúrguer com overlay escurecido, fechamento ao
+     clicar fora, ao pressionar Esc, ao clicar em um item, e
+     bloqueio do scroll da página enquanto está aberto.
+  --------------------------------------------------------- */
+  const navToggle = document.getElementById("nav-toggle");
+  const drawer = document.getElementById("mobile-drawer");
+  const drawerOverlay = document.getElementById("drawer-overlay");
+  const drawerClose = document.getElementById("drawer-close");
+  const mainContent = document.getElementById("main-content");
+  const footerEl = document.querySelector(".footer");
+
+  let lastFocusedBeforeDrawer = null;
+
+  const isDrawerOpen = () => drawer.classList.contains("open");
+
+  const openDrawer = () => {
+    lastFocusedBeforeDrawer = document.activeElement;
+    drawerOverlay.hidden = false;
+    // requestAnimationFrame garante que a transição de opacidade/transform seja aplicada
+    requestAnimationFrame(() => {
+      drawer.classList.add("open");
+      drawerOverlay.classList.add("active");
+    });
+    drawer.setAttribute("aria-hidden", "false");
+    navToggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("no-scroll");
+    // Esconde o restante do site de leitores de tela enquanto o drawer está ativo
+    if (mainContent) mainContent.setAttribute("aria-hidden", "true");
+    if (footerEl) footerEl.setAttribute("aria-hidden", "true");
+    drawerClose.focus();
+  };
+
+  const closeDrawer = () => {
+    if (!isDrawerOpen()) return;
+    drawer.classList.remove("open");
+    drawerOverlay.classList.remove("active");
+    drawer.setAttribute("aria-hidden", "true");
     navToggle.setAttribute("aria-expanded", "false");
+    if (mainContent) mainContent.removeAttribute("aria-hidden");
+    if (footerEl) footerEl.removeAttribute("aria-hidden");
+    setTimeout(() => { drawerOverlay.hidden = true; }, 500);
+    // Só libera o scroll se o catálogo também não estiver aberto
+    if (!document.getElementById("catalog-modal").classList.contains("active")) {
+      document.body.classList.remove("no-scroll");
+    }
+    if (lastFocusedBeforeDrawer) lastFocusedBeforeDrawer.focus();
   };
 
   navToggle.addEventListener("click", () => {
-    const isOpen = navbar.classList.toggle("menu-open");
-    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    isDrawerOpen() ? closeDrawer() : openDrawer();
+  });
+  drawerClose.addEventListener("click", closeDrawer);
+  drawerOverlay.addEventListener("click", closeDrawer);
+
+  // Fecha o drawer ao clicar em qualquer link de navegação interno
+  drawer.querySelectorAll("[data-drawer-link]").forEach((link) => {
+    link.addEventListener("click", closeDrawer);
   });
 
-  // Fecha o menu ao clicar em um link ou pressionar Esc (acessibilidade)
-  navLinks.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMobileMenu);
+  // Foco preso (focus trap) dentro do drawer enquanto ele estiver aberto
+  drawer.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab" || !isDrawerOpen()) return;
+    const focusable = drawer.querySelectorAll(
+      'a[href], button:not([disabled])'
+    );
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
+
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMobileMenu();
+    if (e.key === "Escape" && isDrawerOpen()) closeDrawer();
   });
+
+  /* ---------------------------------------------------------
+     2.2 CATÁLOGO DE SERVIÇOS (MODAL)
+     Abre em tela cheia (mobile) ou como modal centralizado
+     (desktop/tablet), com overlay que fecha ao ser clicado,
+     tecla Esc e botão dedicado de voltar.
+  --------------------------------------------------------- */
+  const catalogModal = document.getElementById("catalog-modal");
+  const catalogOverlay = document.getElementById("catalog-overlay");
+  const catalogBack = document.getElementById("catalog-back");
+  const catalogTriggers = [
+    document.getElementById("open-catalog"),
+    document.getElementById("open-catalog-footer"),
+  ].filter(Boolean);
+
+  let lastFocusedBeforeCatalog = null;
+
+  const isCatalogOpen = () => catalogModal.classList.contains("active");
+
+  const openCatalog = () => {
+    // Se o drawer mobile estiver aberto, fecha-o primeiro para não empilhar camadas
+    if (isDrawerOpen()) closeDrawer();
+
+    lastFocusedBeforeCatalog = document.activeElement;
+    catalogOverlay.hidden = false;
+    catalogModal.hidden = false;
+    requestAnimationFrame(() => {
+      catalogOverlay.classList.add("active");
+      catalogModal.classList.add("active");
+    });
+    document.body.classList.add("no-scroll");
+    if (mainContent) mainContent.setAttribute("aria-hidden", "true");
+    if (footerEl) footerEl.setAttribute("aria-hidden", "true");
+    navbar.setAttribute("aria-hidden", "true");
+    catalogBack.focus();
+  };
+
+  const closeCatalog = () => {
+    if (!isCatalogOpen()) return;
+    catalogOverlay.classList.remove("active");
+    catalogModal.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+    if (mainContent) mainContent.removeAttribute("aria-hidden");
+    if (footerEl) footerEl.removeAttribute("aria-hidden");
+    navbar.removeAttribute("aria-hidden");
+    setTimeout(() => {
+      catalogOverlay.hidden = true;
+      catalogModal.hidden = true;
+    }, 400);
+    if (lastFocusedBeforeCatalog) lastFocusedBeforeCatalog.focus();
+  };
+
+  catalogTriggers.forEach((btn) => btn.addEventListener("click", openCatalog));
+  catalogBack.addEventListener("click", closeCatalog);
+  catalogOverlay.addEventListener("click", closeCatalog);
+
+  catalogModal.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab" || !isCatalogOpen()) return;
+    const focusable = catalogModal.querySelectorAll('a[href], button:not([disabled])');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isCatalogOpen()) closeCatalog();
+  });
+
+  /* ---------------------------------------------------------
+     2.3 SCROLLSPY — destaca o link da seção visível no momento
+     tanto no menu desktop quanto no drawer mobile.
+  --------------------------------------------------------- */
+  const sectionIds = ["sobre", "servicos", "equipe", "galeria", "depoimentos", "agendamento", "localizacao"];
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  const navLinkGroups = sectionIds.map((id) =>
+    document.querySelectorAll(`[data-section="${id}"]`)
+  );
+
+  const setActiveSection = (id) => {
+    sectionIds.forEach((sectionId, index) => {
+      navLinkGroups[index].forEach((link) => {
+        const isActive = sectionId === id;
+        link.classList.toggle("active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    });
+  };
+
+  const scrollspyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveSection(entry.target.id);
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+  );
+  sections.forEach((section) => scrollspyObserver.observe(section));
 
   /* ---------------------------------------------------------
      3. PARALLAX SUAVE NO HERO
@@ -182,14 +355,17 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.hidden = false;
     // pequeno delay para permitir a transição de opacidade/escala
     requestAnimationFrame(() => lightbox.classList.add("active"));
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("no-scroll");
     lightboxClose.focus();
   };
 
   const closeLightbox = () => {
     lightbox.classList.remove("active");
-    document.body.style.overflow = "";
     setTimeout(() => { lightbox.hidden = true; }, 350);
+    // Só libera o scroll se nenhuma outra camada (drawer/catálogo) ainda estiver aberta
+    if (!drawer.classList.contains("open") && !document.getElementById("catalog-modal").classList.contains("active")) {
+      document.body.classList.remove("no-scroll");
+    }
     if (lastFocusedElement) lastFocusedElement.focus();
   };
 
@@ -214,10 +390,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const dateInput = document.getElementById("date");
   const phoneInput = document.getElementById("phone");
 
-  // Impede agendamentos em datas passadas
+  // Impede agendamentos em datas passadas (usa data local, não UTC,
+  // para evitar bloquear o próprio dia à noite em fusos como o do Brasil)
   if (dateInput) {
-    const today = new Date().toISOString().split("T")[0];
-    dateInput.setAttribute("min", today);
+    const now = new Date();
+    const localToday =
+      now.getFullYear() + "-" +
+      String(now.getMonth() + 1).padStart(2, "0") + "-" +
+      String(now.getDate()).padStart(2, "0");
+    dateInput.setAttribute("min", localToday);
   }
 
   // Máscara simples de telefone brasileiro

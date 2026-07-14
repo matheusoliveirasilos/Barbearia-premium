@@ -15,7 +15,14 @@
   <meta property="og:description" content="Tradição, precisão e estilo. A barbearia premium que eleva o cuidado masculino a outro nível." />
   <meta property="og:type" content="website" />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <!-- Favicon embutido em Data URI (elimina requisição 404 para arquivo inexistente) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121212'/%3E%3Cpath d='M10 40 L10 20 L21 30 L32 14 L43 30 L54 20 L54 40 Z' stroke='%23C9A227' stroke-width='3' stroke-linejoin='round' fill='none'/%3E%3Crect x='10' y='43' width='44' height='4' fill='%23C9A227'/%3E%3C/svg%3E" />
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=70" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Black Crown Barber Club — Barbearia Premium" />
+  <meta name="twitter:description" content="Tradição, precisão e estilo. A barbearia premium que eleva o cuidado masculino a outro nível." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,22 +67,271 @@
       </a>
 
       <nav class="nav-links" id="nav-links" aria-label="Navegação principal">
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#equipe">Equipe</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#depoimentos">Depoimentos</a>
-        <a href="#agendamento">Agendamento</a>
-        <a href="#localizacao">Localização</a>
+        <a href="#sobre" data-section="sobre">Sobre</a>
+        <a href="#servicos" data-section="servicos">Serviços</a>
+        <a href="#equipe" data-section="equipe">Equipe</a>
+        <a href="#galeria" data-section="galeria">Galeria</a>
+        <a href="#depoimentos" data-section="depoimentos">Depoimentos</a>
+        <a href="#agendamento" data-section="agendamento">Agendamento</a>
+        <a href="#localizacao" data-section="localizacao">Localização</a>
       </nav>
 
       <a href="#agendamento" class="btn btn-gold nav-cta">Agendar Horário</a>
 
-      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-links">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-drawer">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
+
+  <!-- ===================== OVERLAY DO MENU MOBILE ===================== -->
+  <div class="drawer-overlay" id="drawer-overlay" hidden></div>
+
+  <!-- ===================== DRAWER MOBILE PREMIUM ===================== -->
+  <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <a href="#hero" class="drawer-logo" data-drawer-link>
+        <svg viewBox="0 0 64 64" class="drawer-logo-icon" aria-hidden="true">
+          <path d="M10 40 L10 20 L21 30 L32 14 L43 30 L54 20 L54 40 Z" stroke="#C9A227" stroke-width="3" stroke-linejoin="round" fill="none"/>
+          <rect x="10" y="43" width="44" height="4" fill="#C9A227"/>
+        </svg>
+        <span>BLACK CROWN</span>
+      </a>
+      <button class="drawer-close" id="drawer-close" aria-label="Fechar menu de navegação">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <nav class="drawer-nav" aria-label="Navegação mobile">
+      <a href="#sobre" data-section="sobre" data-drawer-link>
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.2L21 9l-5 4.4L17.5 21 12 17.3 6.5 21 8 13.4 3 9l6.4-.8Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg></span>
+        <span class="drawer-nav-text">Sobre</span>
+      </a>
+      <a href="#servicos" data-section="servicos" data-drawer-link>
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="6.5" cy="5.5" r="1.8" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="6.5" cy="18.5" r="1.8" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></span>
+        <span class="drawer-nav-text">Serviços</span>
+      </a>
+
+      <button type="button" class="drawer-catalog-btn" id="open-catalog">
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h9l5 5v11H5Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/><path d="M14 4v5h5" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/><path d="M8 13h8M8 16.5h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+        <span class="drawer-nav-text">Cardápio Completo</span>
+        <span class="drawer-catalog-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </button>
+
+      <a href="#equipe" data-section="equipe" data-drawer-link>
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="17" cy="9" r="2.4" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M3.5 20c.5-4 2.8-6 5.5-6s5 2 5.5 6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M14.5 14.3c2.3.3 4 2.1 4.4 5.7" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></span>
+        <span class="drawer-nav-text">Equipe</span>
+      </a>
+      <a href="#galeria" data-section="galeria" data-drawer-link>
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1.5" stroke="currentColor" stroke-width="1.4" fill="none"/><circle cx="8.5" cy="9.5" r="1.6" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M4 17l5-5 4 4 3-3 4 4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg></span>
+        <span class="drawer-nav-text">Galeria</span>
+      </a>
+      <a href="#depoimentos" data-section="depoimentos" data-drawer-link>
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 8h4v4c0 2.2-1.3 3.6-3.5 4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 8h4v4c0 2.2-1.3 3.6-3.5 4" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="drawer-nav-text">Depoimentos</span>
+      </a>
+      <a href="#agendamento" data-section="agendamento" data-drawer-link>
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="1.5" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+        <span class="drawer-nav-text">Agendamento</span>
+      </a>
+      <a href="#localizacao" data-section="localizacao" data-drawer-link>
+        <span class="drawer-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.6 7-11.5A7 7 0 0 0 5 9.5C5 14.4 12 21 12 21Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.4" fill="none"/></svg></span>
+        <span class="drawer-nav-text">Localização</span>
+      </a>
+    </nav>
+
+    <div class="drawer-footer">
+      <a href="#agendamento" class="btn btn-gold drawer-cta" data-drawer-link>Agendar Horário</a>
+      <div class="drawer-socials">
+        <a href="#" aria-label="Instagram da Black Crown">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" fill="none"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook da Black Crown">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h-2a4 4 0 0 0-4 4v3H7v3h2v6h3v-6h2.5l.5-3H12V8a1 1 0 0 1 1-1h2Z" stroke="currentColor" fill="none"/></svg>
+        </a>
+        <a href="https://wa.me/5511987654321" aria-label="Fale conosco pelo WhatsApp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-3.6-6.7M13 8.5c.3 1.6 1.6 2.9 3.2 3.2" stroke="currentColor" fill="none" stroke-linecap="round"/><path d="M8.5 9.5c.4 2.6 2.4 4.6 5 5" stroke="currentColor" fill="none" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== CATÁLOGO DE SERVIÇOS (MODAL) ===================== -->
+  <div class="catalog-overlay" id="catalog-overlay" hidden></div>
+  <div class="catalog-modal" id="catalog-modal" role="dialog" aria-modal="true" aria-labelledby="catalog-title" hidden>
+    <header class="catalog-header">
+      <button class="catalog-back" id="catalog-back" aria-label="Voltar ao site">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Voltar</span>
+      </button>
+      <div class="catalog-heading">
+        <svg viewBox="0 0 64 64" class="catalog-crown" aria-hidden="true"><path d="M10 40 L10 20 L21 30 L32 14 L43 30 L54 20 L54 40 Z" stroke="#C9A227" stroke-width="3" stroke-linejoin="round" fill="none"/><rect x="10" y="43" width="44" height="4" fill="#C9A227"/></svg>
+        <h2 id="catalog-title">Cardápio Black Crown</h2>
+        <p>Cortes, rituais de barba e experiências exclusivas da nossa casa</p>
+      </div>
+    </header>
+
+    <nav class="catalog-tabs" aria-label="Categorias do cardápio">
+      <a href="#cat-cortes">Cortes</a>
+      <a href="#cat-barba">Barba</a>
+      <a href="#cat-combos">Combos</a>
+      <a href="#cat-tratamentos">Tratamentos</a>
+      <a href="#cat-especiais">Especiais</a>
+      <a href="#cat-experiencias">Experiências</a>
+    </nav>
+
+    <div class="catalog-body">
+
+      <section class="catalog-category" id="cat-cortes">
+        <div class="catalog-category-heading">
+          <h3>Cortes Masculinos</h3>
+          <span class="stripe-divider stripe-divider-sm" aria-hidden="true"></span>
+        </div>
+        <div class="catalog-grid">
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Corte Clássico Black Crown</h4><span class="catalog-price">R$ 60</span></div>
+            <p>Tesoura e máquina em harmonia, com acabamento na navalha e finalização em toalha quente.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Degradê Signature</h4><span class="catalog-price">R$ 75</span></div>
+            <p>Fade de alta precisão com transição milimétrica e desenho personalizado sob medida.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Corte Executivo Expresso</h4><span class="catalog-price">R$ 65</span></div>
+            <p>Manutenção rápida e precisa para quem não abre mão da elegância na rotina.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Corte Infantil Príncipe</h4><span class="catalog-price">R$ 45</span></div>
+            <p>Atendimento pensado para os pequenos, com paciência, cuidado e muito estilo.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Reestruturação de Linha</h4><span class="catalog-price">R$ 35</span></div>
+            <p>Acabamento de contorno e nuca entre um corte e outro, direto na navalha.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog-category" id="cat-barba">
+        <div class="catalog-category-heading">
+          <h3>Barba</h3>
+          <span class="stripe-divider stripe-divider-sm" aria-hidden="true"></span>
+        </div>
+        <div class="catalog-grid">
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Barboterapia Real</h4><span class="catalog-price">R$ 55</span></div>
+            <p>Ritual completo com toalha quente, óleos essenciais, navalha e massagem facial.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Modelagem na Navalha</h4><span class="catalog-price">R$ 45</span></div>
+            <p>Desenho preciso do contorno com navalha tradicional e acabamento impecável.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Hidratação de Barba</h4><span class="catalog-price">R$ 40</span></div>
+            <p>Tratamento nutritivo que amacia os fios e reduz o aspecto ressecado.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Desenho de Bigode</h4><span class="catalog-price">R$ 25</span></div>
+            <p>Aparo e modelagem de bigode com precisão de detalhe.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog-category" id="cat-combos">
+        <div class="catalog-category-heading">
+          <h3>Combos (Cabelo + Barba)</h3>
+          <span class="stripe-divider stripe-divider-sm" aria-hidden="true"></span>
+        </div>
+        <div class="catalog-grid">
+          <article class="catalog-item catalog-item-featured">
+            <div class="catalog-item-head"><h4>Combo Coroa Completa</h4><span class="catalog-price">R$ 95</span></div>
+            <p>Nosso combo mais requisitado: corte, barba modelada e toalha quente em um só atendimento.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Combo Executivo</h4><span class="catalog-price">R$ 110</span></div>
+            <p>Corte + barba + sobrancelha, ideal para quem precisa estar impecável em toda ocasião.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Combo Pai &amp; Filho</h4><span class="catalog-price">R$ 130</span></div>
+            <p>Corte para os dois com o mesmo padrão de excelência, em atendimento conjunto.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog-category" id="cat-tratamentos">
+        <div class="catalog-category-heading">
+          <h3>Tratamentos Capilares</h3>
+          <span class="stripe-divider stripe-divider-sm" aria-hidden="true"></span>
+        </div>
+        <div class="catalog-grid">
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Hidratação Profunda Gold</h4><span class="catalog-price">R$ 55</span></div>
+            <p>Máscara nutritiva de alta performance que devolve maciez e brilho aos fios.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Pigmentação Capilar</h4><span class="catalog-price">R$ 70</span></div>
+            <p>Camuflagem de falhas e uniformização de tom para cabelo e barba.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Terapia Anticaspa</h4><span class="catalog-price">R$ 50</span></div>
+            <p>Tratamento calmante para couro cabeludo sensível, com ativos específicos.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Reconstrução Capilar</h4><span class="catalog-price">R$ 85</span></div>
+            <p>Protocolo intensivo para fios danificados por química ou calor excessivo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog-category" id="cat-especiais">
+        <div class="catalog-category-heading">
+          <h3>Serviços Especiais</h3>
+          <span class="stripe-divider stripe-divider-sm" aria-hidden="true"></span>
+        </div>
+        <div class="catalog-grid">
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Design de Sobrancelha</h4><span class="catalog-price">R$ 25</span></div>
+            <p>Alinhamento e simetria para valorizar a expressão do olhar.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Limpeza de Pele Executiva</h4><span class="catalog-price">R$ 65</span></div>
+            <p>Limpeza facial profunda com extração e finalização calmante.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Depilação de Nariz e Orelha</h4><span class="catalog-price">R$ 20</span></div>
+            <p>Acabamento discreto e rápido, com cera específica para peles sensíveis.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Massagem Capilar Relax</h4><span class="catalog-price">R$ 35</span></div>
+            <p>Sessão de relaxamento com óleos aromáticos para aliviar tensão do dia a dia.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog-category" id="cat-experiencias">
+        <div class="catalog-category-heading">
+          <h3>Experiências Exclusivas</h3>
+          <span class="stripe-divider stripe-divider-sm" aria-hidden="true"></span>
+        </div>
+        <div class="catalog-grid">
+          <article class="catalog-item catalog-item-featured">
+            <div class="catalog-item-head"><h4>Ritual Black Crown VIP</h4><span class="catalog-price">R$ 180</span></div>
+            <p>Experiência completa de 90 minutos: corte, barboterapia, limpeza de pele e massagem, com espumante de cortesia.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Noivo &amp; Padrinhos</h4><span class="catalog-price">Sob consulta</span></div>
+            <p>Pacote personalizado para o grande dia, com atendimento agendado em grupo.</p>
+          </article>
+          <article class="catalog-item">
+            <div class="catalog-item-head"><h4>Assinatura Mensal Black Crown</h4><span class="catalog-price">R$ 220<small>/mês</small></span></div>
+            <p>Cortes ilimitados e prioridade de agenda para clientes frequentes do clube.</p>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </div>
 
   <main id="main-content">
 
@@ -527,6 +783,7 @@
         <a href="#equipe">Equipe</a>
         <a href="#agendamento">Agendamento</a>
         <a href="#localizacao">Localização</a>
+        <button type="button" class="footer-link-btn" id="open-catalog-footer">Cardápio Completo</button>
       </div>
     </div>
 
