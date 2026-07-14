@@ -155,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const catalogBack = document.getElementById("catalog-back");
   const catalogTriggers = [
     document.getElementById("open-catalog"),
+    document.getElementById("open-catalog-nav"),
     document.getElementById("open-catalog-footer"),
   ].filter(Boolean);
 

@@ -286,7 +286,7 @@ body.no-scroll { overflow: hidden; }
   flex: 1;
   justify-content: center;
 }
-.nav-links a {
+.nav-links a, .nav-links-btn {
   position: relative;
   font-family: var(--font-display);
   font-size: 0.78rem;
@@ -294,9 +294,13 @@ body.no-scroll { overflow: hidden; }
   text-transform: uppercase;
   color: #d6d6d6;
   padding: 0.3rem 0;
+  background: none;
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
   transition: color var(--transition-fast);
 }
-.nav-links a::after {
+.nav-links a::after, .nav-links-btn::after {
   content: "";
   position: absolute;
   left: 0; bottom: 0;
@@ -304,8 +308,10 @@ body.no-scroll { overflow: hidden; }
   background: var(--dourado);
   transition: width var(--transition-fast);
 }
-.nav-links a:hover, .nav-links a:focus-visible { color: var(--dourado); }
-.nav-links a:hover::after, .nav-links a:focus-visible::after { width: 100%; }
+.nav-links a:hover, .nav-links a:focus-visible,
+.nav-links-btn:hover, .nav-links-btn:focus-visible { color: var(--dourado); }
+.nav-links a:hover::after, .nav-links a:focus-visible::after,
+.nav-links-btn:hover::after, .nav-links-btn:focus-visible::after { width: 100%; }
 .nav-links a.active { color: var(--dourado); }
 .nav-links a.active::after { width: 100%; }
 
@@ -1161,9 +1167,8 @@ body.no-scroll { overflow: hidden; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dourado);
-  transition: var(--transition-fast);
+  transition: background 0.15s ease, color 0.15s ease;
 }
-.catalog-back svg { width: 15px; height: 15px; }
 .catalog-back:hover, .catalog-back:focus-visible { background: var(--dourado); color: var(--preto); }
 
 .catalog-crown { width: 34px; height: 34px; margin: 0 auto 0.6rem; }
@@ -1187,7 +1192,8 @@ body.no-scroll { overflow: hidden; }
   scrollbar-width: thin;
 }
 .catalog-tabs a {
-  flex-shrink: 0;
+  flex: 1 1 0;
+  text-align: center;
   padding: 0.5rem 1.1rem;
   border: 1px solid rgba(201, 162, 39, 0.25);
   border-radius: 999px;
@@ -1196,7 +1202,7 @@ body.no-scroll { overflow: hidden; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #cfcfcf;
-  transition: var(--transition-fast);
+  transition: border-color 0.15s ease, color 0.15s ease;
   white-space: nowrap;
 }
 .catalog-tabs a:hover, .catalog-tabs a:focus-visible { border-color: var(--dourado); color: var(--dourado); }
@@ -1219,15 +1225,19 @@ body.no-scroll { overflow: hidden; }
 .stripe-divider-sm { width: 60px; height: 4px; margin: 0.7rem 0 1.4rem; }
 
 .catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.1rem;
 }
 .catalog-item {
+  flex: 1 1 calc(50% - 0.55rem);
+  min-width: 260px;
+  max-width: calc(50% - 0.55rem);
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(201, 162, 39, 0.14);
   padding: 1.3rem 1.4rem;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 .catalog-item:hover { transform: translateY(-3px); border-color: rgba(201, 162, 39, 0.4); }
 .catalog-item-featured {
@@ -1283,13 +1293,19 @@ body.no-scroll { overflow: hidden; }
   .about-badge { right: 1rem; }
 }
 
+@media (max-width: 1180px) and (min-width: 861px) {
+  .nav-links { gap: 1.15rem; }
+  .nav-links a, .nav-links-btn { font-size: 0.7rem; letter-spacing: 0.06em; }
+  .nav-cta { padding: 0.7rem 1.3rem; }
+}
+
 @media (max-width: 860px) {
   .nav-links, .nav-cta { display: none; }
   .nav-toggle { display: flex; }
 }
 
 @media (max-width: 760px) {
-  .catalog-grid { grid-template-columns: 1fr; }
+  .catalog-item { flex-basis: 100%; max-width: 100%; }
 }
 
 /* Em telas de celular, o catálogo ocupa a tela cheia (experiência de "página" imersiva) */
@@ -1308,7 +1324,8 @@ body.no-scroll { overflow: hidden; }
   .catalog-modal.active { transform: translate(0, 0) scale(1); }
   .catalog-header { padding: 5.5rem 1.4rem 1.4rem; }
   .catalog-back { top: 1.2rem; left: 1.2rem; }
-  .catalog-tabs { padding: 1rem 1.4rem; }
+  .catalog-tabs { padding: 1rem 1.4rem; overflow-x: auto; }
+  .catalog-tabs a { flex: 0 0 auto; }
   .catalog-body { padding: 1.6rem 1.4rem 2.5rem; }
 }
 
